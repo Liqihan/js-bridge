@@ -1,0 +1,22 @@
+{
+  "name": "js-bridge",
+  "version": "1.0.0",
+  "description": "针对ios和安卓的webViewJavascriptBridge的上层封装",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Liqihan/js-bridge.git"
+  },
+  "keywords": [
+    "jsbridge"
+  ],
+  "author": "grove.liqihan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liqihan/js-bridge/issues"
+  },
+  "homepage": "https://github.com/Liqihan/js-bridge#readme"
+}
