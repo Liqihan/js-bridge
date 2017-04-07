@@ -6,9 +6,12 @@
 原生的客户端方法
 iOS 用到的开源方案：https://github.com/marcuswestin/WebViewJavascriptBridge
 Android 用到的开源方案：https://github.com/lzyzsd/JsBridge
-微信JS 
-使用方法
-js调用客户端
+微信JS
+
+### 使用方法
+
+js调用客户端，客户端需要先实现checkJsApi方法，来检验调用的方法是否存在于app内，由于app发版，会不断有新的方法增加或删除，用checkJsApi先来判断调用的方法是否存在。
+checkJsApi方法接受一个数组，返回对应的boolean值
 ```
     /**
         * 调用APP方法，options包含下面配置
