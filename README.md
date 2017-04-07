@@ -8,6 +8,7 @@ iOS 用到的开源方案：https://github.com/marcuswestin/WebViewJavascriptBri
 Android 用到的开源方案：https://github.com/lzyzsd/JsBridge
 微信JS 
 使用方法
+js调用客户端
 ```
     /**
         * 调用APP方法，options包含下面配置
@@ -22,4 +23,8 @@ Android 用到的开源方案：https://github.com/lzyzsd/JsBridge
     }, function(err) {
         alert(err);
     })
-    
+```
+客户端调用js
+```
+    $JsBridge.registerAPP(funName, $localMethod[funName]);
+```
