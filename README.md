@@ -8,6 +8,26 @@ iOS 用到的开源方案：https://github.com/marcuswestin/WebViewJavascriptBri
 Android 用到的开源方案：https://github.com/lzyzsd/JsBridge
 微信JS
 
+### 核心方法
+
+bridge的初始化
+```
+    $Jsbridge.$BG.ready(function(bridge){
+        // TODO
+    })
+```
+
+调用本地方法，是对WebViewJavascriptBridge.callHandle的封装
+```
+    $Jsbridge.$BG.callNative(methodName, param, callback)
+```
+
+注册方法供app调用
+```
+    $Jsbridge.$BG.registerHandler(methodName, callback)
+```
+
+
 ### 使用方法
 
 js调用客户端，客户端需要先实现checkJsApi方法，来检验调用的方法是否存在于app内，由于app发版，会不断有新的方法增加或删除，用checkJsApi先来判断调用的方法是否存在。
