@@ -1,8 +1,7 @@
 import { JsBridge } from "./JsBridge";
-
+import $DT from './device';
 const jsBridge = new JsBridge();
-const { device } = jsBridge;
-export const callApp = (method, options, success, fail) => {
+const callApp = (method, options, success, fail) => {
     if (typeof options === "function") {
         fail = success;
         success = options;
@@ -10,7 +9,7 @@ export const callApp = (method, options, success, fail) => {
     } else if (typeof options === "undefined") {
         options = {};
     }
-    $BG.call({
+    jsBridge.call({
         method: method,
         params: options,
         success: success,
@@ -18,9 +17,9 @@ export const callApp = (method, options, success, fail) => {
     });
 };
 // 把callApp封装成了promise而已，没啥大差别
-export const invokeAppMethod = (methodName, obj) => {
+const invokeAppMethod = (methodName, obj) => {
     return new Promise(function(resolve, reject) {
-        callAPP(
+        callApp(
             methodName,
             obj,
             function(data) {
@@ -34,15 +33,18 @@ export const invokeAppMethod = (methodName, obj) => {
         );
     });
 };
-export {
-    device as $DT
-}
 // jsbridge app调用h5方法
-export const registerAPP = (method, callback) => {
+const registerAPP = (method, callback) => {
     jsBridge.register({
         method: method,
         callback: callback
     });
 };
-
+export {
+    jsBridge as $BG,
+    $DT,
+    invokeAppMethod,
+    registerAPP, 
+    callApp
+}
 export default jsBridge;

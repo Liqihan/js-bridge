@@ -1,4 +1,4 @@
-import device from "./device";
+import $DT, { deviceTouch } from "./device";
 export class JsBridge {
     /**
      * Creates an instance of JsBridge.
@@ -20,25 +20,13 @@ export class JsBridge {
     registerQueue = {};
     // 支持的API
     supportedApi = [];
-    AppReg = /AppleWebKit\/(\d+(\.\d+){2})/ig ;
     //配置
     config = options => {
         this.debug = options.debug;
     };
-    // getInstance = ((options) => {
-    //     var instance = null;
-    //     return (options) => {
-    //         if (!instance) {
-    //             instance = new JsBridge(options);
-    //         }
-    //     }
-    // })()
     setAppReg = AppReg => {
-        this.AppReg = AppReg;
+        deviceTouch(AppReg);
     };
-    get device() {
-        return device(this.AppReg);
-    }
     // 初始化bridge模块
     init = () => {
         const self = this;
@@ -110,7 +98,7 @@ export class JsBridge {
     };
     // bridge初始完完成调用
     ready = callback => {
-        const { isOwnApp, supportedJsBridge } = this.device;
+        const { isOwnApp, supportedJsBridge } = $DT;
         if (!isOwnApp || !supportedJsBridge) {
             // 不是自己的app或者h5这边没有使用bridge
             return callback();

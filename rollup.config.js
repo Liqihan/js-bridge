@@ -3,12 +3,12 @@ export default {
     input: "src/index.js",
     output: [
         {
-            file: "lib/guice.umd.js",
+            file: "lib/jsbridge.umd.js",
             format: "umd",
             name: 'JsBridge'
         },
         {
-            file: "lib/guice.esm.js",
+            file: "lib/jsbridge.esm.js",
             format: "es"
         }
     ],
