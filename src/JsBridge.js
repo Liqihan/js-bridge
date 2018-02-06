@@ -1,4 +1,4 @@
-import $DT, { deviceTouch } from "./device";
+import $DT  from "./device";
 export class JsBridge {
     /**
      * Creates an instance of JsBridge.
@@ -23,9 +23,6 @@ export class JsBridge {
     //配置
     config = options => {
         this.debug = options.debug;
-    };
-    setAppReg = AppReg => {
-        deviceTouch(AppReg);
     };
     // 初始化bridge模块
     init = () => {
@@ -76,9 +73,7 @@ export class JsBridge {
             "WebViewJavascriptBridgeReady",
             function() {
                 callback(window.WebViewJavascriptBridge);
-                if (self.debug) {
-                    window.alert("ReadySuccess!");
-                }
+                self.debugInfo("bridge ready success!");
             },
             false
         );

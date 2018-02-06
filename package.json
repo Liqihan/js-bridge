@@ -5,6 +5,7 @@
   "main": "lib/jsbridge.umd.js",
   "scripts": {
     "build": "rimraf lib && ./node_modules/.bin/rollup --config rollup.config.js",
+    "build:watch": "./node_modules/.bin/rollup --config rollup.config.js --watch",
     "test": "node -r babel-register test/guice-test.js"
   },
   "repository": "git+ssh://git@github.com/Liqihan/js-bridge.git",

@@ -13,15 +13,7 @@ const isIphone =
 const isIos = isIpad || isIphone;
 const isMobile = isAndroid || isIos;
 const os = isMobile ? (isIos ? 'ios' : 'android') : ''
-const device = {
-    os: os,
-    android: isAndroid,
-    ios: isIos,
-    mobile: isMobile,
-    // 默认设置为true吧
-    supportedJsBridge: true
-}
-export const deviceTouch = (AppReg = /AppleWebKit\/(\d+(\.\d+){2})/ig) => {
+const deviceTouch = (AppReg = /AppleWebKit\/(\d+(\.\d+){2})/ig) => {
     let appVersion = '';
     const isOwnApp = AppReg.test(userAgent);
     if (isOwnApp) {
@@ -31,5 +23,14 @@ export const deviceTouch = (AppReg = /AppleWebKit\/(\d+(\.\d+){2})/ig) => {
     device.appVersion = appVersion;
     return device;
 };
+const device = {
+    os: os,
+    android: isAndroid,
+    ios: isIos,
+    mobile: isMobile,
+    // 默认设置为true吧
+    supportedJsBridge: true,
+    deviceTouch: deviceTouch
+}
 deviceTouch();
 export default device;

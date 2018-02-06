@@ -51,3 +51,5 @@ checkJsApi方法接受一个数组，返回对应的boolean值
 ```
     $JsBridge.registerAPP(funName, $localMethod[funName]);
 ```
+
+具体安卓注入的js代码可见[WebViewJavascriptBridgeFromAndroid](https://github.com/Liqihan/js-bridge/blob/master/src/WebViewJavascriptBridgeFromAndroid.js);ios下可以见[WebViewJavascriptBridgeFromOC](https://github.com/Liqihan/js-bridge/blob/master/src/WebViewJavascriptBridgeFromOC.js)
