@@ -3,8 +3,7 @@
  * @Date: 2018-02-06 10:28:04
  * @Desc: 获取设备信息相关的
 */
-
-export default device = AppReg => {
+export default (AppReg = /AppleWebKit\/(\d+(\.\d+){2})/ig) => {
     const userAgent = navigator.userAgent;
     const isAndroid = userAgent.match(/(Android);?[\s\/]+([\d.]+)?/)
         ? true

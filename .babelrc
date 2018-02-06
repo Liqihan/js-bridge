@@ -10,5 +10,6 @@
     ],
     "plugins": [
         "transform-class-properties"
-    ]
+    ],
+    "comments": false
 }

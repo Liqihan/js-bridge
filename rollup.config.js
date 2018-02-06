@@ -5,7 +5,7 @@ export default {
         {
             file: "lib/guice.umd.js",
             format: "umd",
-            name: 'bdGuice'
+            name: 'JsBridge'
         },
         {
             file: "lib/guice.esm.js",

@@ -5,7 +5,9 @@ export class JsBridge {
      * @param {any} {AppReg} App userAgent标识符
      * @memberof JsBridge
      */
-    constructor() {}
+    constructor() {
+        this.init();
+    }
     // 是否开启调试
     debug = false;
     // 是否初始化中
@@ -18,7 +20,7 @@ export class JsBridge {
     registerQueue = {};
     // 支持的API
     supportedApi = [];
-    AppReg = "";
+    AppReg = /AppleWebKit\/(\d+(\.\d+){2})/ig ;
     //配置
     config = options => {
         this.debug = options.debug;
@@ -122,7 +124,7 @@ export class JsBridge {
         }
     };
     // 调用app
-    _call = options => {
+    call = options => {
         const self = this;
         self.ready(bridge => {
             const { method, params, success, error = () => {} } = options;
@@ -155,7 +157,36 @@ export class JsBridge {
             }
         });
     };
-
+    register = options => {
+        var self = this;
+        const { method, callback } = options;
+        if (method in this.registerQueue) {
+            this.registerQueue[method].push(callback);
+        } else {
+            this.registerQueue[method] = [];
+            this.registerQueue[method].push(callback);
+            this.ready(function(bridge) {
+                if (!bridge) {
+                    self.debugInfo("jsBridge 没有被注册");
+                    return;
+                }
+                bridge.registerHandler(method, function() {
+                    var args = [].slice.call(arguments);
+                    if (args[0] && typeof args[0] === "string") {
+                        try {
+                            args[0] = JSON.parse(args[0]);
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+                    self.registerQueue[method].forEach(function(fn) {
+                        fn.apply(bridge, args);
+                    });
+                    self.debugInfo(`APP调用H5方法: ${method}`);
+                });
+            });
+        }
+    };
     // 调试时打印信息
     debugInfo = message => {
         this.debug && window.alert(message);
