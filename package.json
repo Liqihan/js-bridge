@@ -2,14 +2,12 @@
   "name": "js-bridge",
   "version": "1.0.0",
   "description": "针对ios和安卓的webViewJavascriptBridge的上层封装",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/rollup --config rollup.config.js",
+    "test": "node -r babel-register test/guice-test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Liqihan/js-bridge.git"
-  },
+  "repository": "git+ssh://git@github.com/Liqihan/js-bridge.git",
   "keywords": [
     "jsbridge"
   ],
@@ -18,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/Liqihan/js-bridge/issues"
   },
-  "homepage": "https://github.com/Liqihan/js-bridge#readme"
+  "homepage": "https://github.com/Liqihan/js-bridge#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-lodash": "^3.3.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "rollup": "^0.53.4",
+    "rollup-plugin-babel": "^3.0.3"
+  }
 }
