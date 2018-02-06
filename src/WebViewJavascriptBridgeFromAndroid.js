@@ -76,12 +76,12 @@
         messagingIframe.src = CUSTOM_PROTOCOL_SCHEME + '://return/_fetchQueue/' + encodeURIComponent(messageQueueString);
     }
 
-    //提供给native使用,
+    //提供给native使用，请求返回或者native直接调用,
     function _dispatchMessageFromNative(messageJSON) {
         setTimeout(function () {
             var message = JSON.parse(messageJSON);
             var responseCallback;
-            //java call finished, now need to call js callback function
+            //java call finished, now need to call js callback function，对应callhandle的回调
             if (message.responseId) {
                 responseCallback = responseCallbacks[message.responseId];
                 if (!responseCallback) {
@@ -90,7 +90,7 @@
                 responseCallback(message.responseData);
                 delete responseCallbacks[message.responseId];
             } else {
-                //直接发送
+                //直接发送，registerApp提供给APP使用的方法
                 if (message.callbackId) {
                     var callbackResponseId = message.callbackId;
                     responseCallback = function (responseData) {
@@ -138,6 +138,7 @@
 
     var doc = document;
     _createQueueReadyIframe(doc);
+    // 事件触发
     var readyEvent = doc.createEvent('Events');
     readyEvent.initEvent('WebViewJavascriptBridgeReady');
     readyEvent.bridge = WebViewJavascriptBridge;

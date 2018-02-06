@@ -5,12 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+            button {
+                display: block;
+                font-size: 15px;
+            }
+        </style>
 </head>
 <body>
+    <button id="loadUrl">加载登录</button>
+    <button id="normal">设置normaltitle</button>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="../lib/jsbridge.umd.js">
     </script>    
     <script>
-        console.log
+        $JsBridge.$BG.config({
+            debug: true 
+        })
+        $JsBridge.$BG.setAppReg();
+        var bdttAppMethod =  $JsBridge.invokeAppMethod;
+        var registerAPP =  $JsBridge.registerAPP;
+        bdttAppMethod('getSysInfo');
+        $("#normal").on('click',function() {
+            bdttAppMethod('customTitleBar', {
+                type: 'normal',
+                title: 'normal'
+            })
+        })
+        // bdttAppMethod('getUserInfo');
     </script>
 </body>
 </html>
