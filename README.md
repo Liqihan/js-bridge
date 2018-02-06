@@ -12,19 +12,19 @@ Android 用到的开源方案：https://github.com/lzyzsd/JsBridge
 
 bridge的初始化
 ```
-    $Jsbridge.$BG.ready(function(bridge){
+    $JsBridge.$BG.ready(function(bridge){
         // TODO
     })
 ```
 
 调用本地方法，是对WebViewJavascriptBridge.callHandle的封装
 ```
-    $Jsbridge.$BG.callNative(methodName, param, callback)
+    $JsBridge.$BG.callNative(methodName, param, callback)
 ```
 
 注册方法供app调用
 ```
-    $Jsbridge.$BG.registerHandler(methodName, callback)
+    $JsBridge.$BG.registerHandler(methodName, callback)
 ```
 
 

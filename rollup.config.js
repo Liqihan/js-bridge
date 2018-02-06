@@ -5,7 +5,7 @@ export default {
         {
             file: "lib/jsbridge.umd.js",
             format: "umd",
-            name: 'JsBridge'
+            name: '$JsBridge'
         },
         {
             file: "lib/jsbridge.esm.js",
