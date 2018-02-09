@@ -121,15 +121,16 @@ export class JsBridge {
                         ? JSON.stringify(params)
                         : params;
                 bridge.invoke(method, newParams, success);
+                self.debugInfo(`正在调用APP的方法:${method}`);
             } else {
                 // bridge.callNative(options.method, options.params, options.success);
                 // 调用checkJsApi判断该方法是否被APP支持,返回一个对象，包含bool值的
-                bridge.callNative("checkJsApi", [method], function(re) {
+                bridge.invoke("checkJsApi", [method], function(re) {
                     if (re[method]) {
                         // 存储下该方法
                         self.supportedApi.push(method);
                         // 已经被支持
-                        bridge.callNative(method, params, success);
+                        bridge.invoke(method, params, success);
                         self.debugInfo(`正在调用APP的方法:${method}`);
                     } else if (typeof error === "function") {
                         // 不支持该方法

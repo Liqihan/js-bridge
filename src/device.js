@@ -30,6 +30,8 @@ const device = {
     mobile: isMobile,
     // 默认设置为true吧
     supportedJsBridge: true,
+    isOwnApp: false,
+    appVersion: ''
     deviceTouch: deviceTouch
 }
 deviceTouch();
